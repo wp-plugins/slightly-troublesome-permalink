@@ -4,7 +4,7 @@ Plugin Name: Slightly troublesome permalink
 Plugin URI: http://elearn.jp/wpman/column/slightly-troublesome-permalink.html
 Description: This plug-in controls the category in permalink. When the post belongs to two or more categories.
 Author: tmatsuur
-Version: 1.0.0
+Version: 1.0.1
 Author URI: http://12net.jp/
 */
 
@@ -15,7 +15,7 @@ Author URI: http://12net.jp/
 
 define( 'SLIGHTLY_TROUBLESOME_PERMALINK_DOMAIN', 'slightly-troublesome-permalink' );
 define( 'SLIGHTLY_TROUBLESOME_PERMALINK_DB_VERSION_NAME', 'slightly-troublesome-permalink-db-version' );
-define( 'SLIGHTLY_TROUBLESOME_PERMALINK_BUTTON_DB_VERSION', '1.0.0' );
+define( 'SLIGHTLY_TROUBLESOME_PERMALINK_DB_VERSION', '1.0.1' );
 define( 'SLIGHTLY_TROUBLESOME_PERMALINK_OPTIONS', 'slightly-troublesome-permalink-options' );
 
 $plugin_slightly_troublesome_permalink = new slightly_troublesome_permalink();
@@ -176,14 +176,14 @@ body > li.ui-draggable-dragging > ul {
 	height: 15px;
 	width: 15px;
 	margin: 1px 3px 0 0;
-	background: transparent url(../../wp-admin/images/arrows.png) no-repeat 0 0px;
+	background: transparent url(../../wp-admin/images/arrows.png) no-repeat 0 -108px;
 	border: 1px solid #AAAAAA;
 	border-radius: 8px;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
 }
 #categories-tree li.open > span.hasChildren > em {
-	background: transparent url(../../wp-admin/images/arrows.png) no-repeat 0 -36px;
+	background: transparent url(../../wp-admin/images/arrows.png) no-repeat 0 0px;
 }
 -->
 </style>
