@@ -51,7 +51,7 @@ Please contact to me.
 
 == Changelog ==
 
-= 1.0.1
+= 1.0.1 =
 * The direction of the arrow of a parent category was changed.
 
 = 1.0.0 =
