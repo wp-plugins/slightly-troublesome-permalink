@@ -4,18 +4,18 @@ Plugin Name: Slightly troublesome permalink
 Plugin URI: http://elearn.jp/wpman/column/slightly-troublesome-permalink.html
 Description: This plug-in controls the category in permalink. When the post belongs to two or more categories.
 Author: tmatsuur
-Version: 1.0.1
+Version: 1.0.2
 Author URI: http://12net.jp/
 */
 
 /*
-    Copyright (C) 2012 tmatsuur (Email: takenori dot matsuura at 12net dot jp)
+    Copyright (C) 2012-2015 tmatsuur (Email: takenori dot matsuura at 12net dot jp)
            This program is licensed under the GNU GPL Version 2.
 */
 
 define( 'SLIGHTLY_TROUBLESOME_PERMALINK_DOMAIN', 'slightly-troublesome-permalink' );
 define( 'SLIGHTLY_TROUBLESOME_PERMALINK_DB_VERSION_NAME', 'slightly-troublesome-permalink-db-version' );
-define( 'SLIGHTLY_TROUBLESOME_PERMALINK_DB_VERSION', '1.0.1' );
+define( 'SLIGHTLY_TROUBLESOME_PERMALINK_DB_VERSION', '1.0.2' );
 define( 'SLIGHTLY_TROUBLESOME_PERMALINK_OPTIONS', 'slightly-troublesome-permalink-options' );
 
 $plugin_slightly_troublesome_permalink = new slightly_troublesome_permalink();
@@ -39,7 +39,7 @@ class slightly_troublesome_permalink {
 		}
 	}
 	function admin_menu() {
-		add_options_page( __( 'Priority of category for permalink', SLIGHTLY_TROUBLESOME_PERMALINK_DOMAIN ), __( 'Priority of category', SLIGHTLY_TROUBLESOME_PERMALINK_DOMAIN ), 9, __FILE__, array( &$this, 'settings' ) );
+		add_options_page( __( 'Priority of category for permalink', SLIGHTLY_TROUBLESOME_PERMALINK_DOMAIN ), __( 'Priority of category', SLIGHTLY_TROUBLESOME_PERMALINK_DOMAIN ), 'manage_options', __FILE__, array( &$this, 'settings' ) );
 	}
 	function plugin_meta( $links, $file ) {
 		if ( $file == plugin_basename( dirname( __FILE__ ) ).'/'.basename( __FILE__ ) ) {
@@ -317,9 +317,17 @@ body > li.ui-draggable-dragging > ul {
 </script>
 <?php
 	}
+	private function _nonce_suffix() {
+		return date_i18n( 'His TO', filemtime( __FILE__ ) );
+	}
 	function settings() {
+		if ( !current_user_can( 'manage_options' ) )
+			return;	// Except an administrator
+
 		$message = '';
 		if ( isset( $_POST['high_priority'] ) ) {
+			check_admin_referer( SLIGHTLY_TROUBLESOME_PERMALINK_DOMAIN.$this->_nonce_suffix() );
+
 			$this->options['always'] = ( $_POST['high_priority']['always'] )? true: false;
 			$this->options['order'] = $_POST['high_priority']['order'];
 			update_option( SLIGHTLY_TROUBLESOME_PERMALINK_OPTIONS, $this->options );
@@ -378,7 +386,7 @@ echo $out;
 </tr>
 </tbody>
 </table>
-<?php submit_button(); ?>
+<?php wp_nonce_field( SLIGHTLY_TROUBLESOME_PERMALINK_DOMAIN.$this->_nonce_suffix() ); submit_button(); ?>
 </form>
 </div>
 <?php

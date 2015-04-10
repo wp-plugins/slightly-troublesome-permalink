@@ -3,8 +3,8 @@ Contributors: tmatsuur
 Donate link: http://elearn.jp/wpman/column/slightly-troublesome-permalink.html
 Tags: permalink
 Requires at least: 3.3.0
-Tested up to: 3.6.1
-Stable tag: 1.0.1
+Tested up to: 4.1.1
+Stable tag: 1.0.2
 
 This plug-in controls the category in permalink. When the post belongs to two or more categories.
 
@@ -50,6 +50,9 @@ Please contact to me.
 2. Drag a category in a left side list, and drop to upwards.
 
 == Changelog ==
+
+= 1.0.2 =
+* Changed the authority specified when adding options menu.
 
 = 1.0.1 =
 * The direction of the arrow of a parent category was changed.
